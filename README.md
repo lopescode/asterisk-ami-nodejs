@@ -1,0 +1,1 @@
+# AMI para Asterisk - NodeJS
