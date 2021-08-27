@@ -1,13 +1,12 @@
 const customExpress = require('./config/customExpress');
+
+//Instanciando o APP
 const app = customExpress()
-const asteriskManager = require('asterisk-manager');
-const { port, host, username, password } = require('./secure_data/connection')
-const ami = asteriskManager(port, host, username, password);
+const path = require('path')
 
-//Ouvindo a porta 5000
-app.listen(5000, () => console.log("Servidor rodando na porta 5000"))
-
-//Puxando os logs de eventos do asterisk
-ami.on("managerevent", async (evt) => {
-    console.log(JSON.stringify(evt));
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname+'/views/src/index.html'));
 })
+
+//Adicionando as rotas
+app.listen(80, () => console.log("Servidor rodando na porta 80"))
